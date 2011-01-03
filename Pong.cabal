@@ -1,0 +1,48 @@
+name: Pong
+version: 0.0.1
+cabal-version: -any
+build-type: Simple
+license: AllRightsReserved
+license-file: /home/roger/projects/haskell/leksah/OpenGLGraphics/LICENSE
+copyright:
+maintainer: Roger Turnau
+build-depends: GLUT ==2.2.2.0, OpenGL ==2.4.0.1,
+               StateVar >=1.0.0.0, base -any
+stability: Experimental
+homepage:
+package-url:
+bug-reports:
+synopsis: A new Pong game
+description: ... because who doesn't want another FP retrogame?
+category:
+author: Roger Turnau
+tested-with:
+data-files:
+data-dir: ""
+extra-source-files:
+extra-tmp-files:
+ 
+executable: Pong
+main-is: Main.hs
+buildable: True
+build-tools:
+cpp-options:
+cc-options:
+ld-options:
+pkgconfig-depends:
+frameworks:
+c-sources:
+extensions:
+extra-libraries:
+extra-lib-dirs:
+includes:
+install-includes:
+include-dirs:
+hs-source-dirs: src
+other-modules:
+ghc-prof-options:
+ghc-shared-options:
+ghc-options:
+hugs-options:
+nhc98-options:
+jhc-options:
