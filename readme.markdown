@@ -5,7 +5,7 @@ I'm tearing it apart and putting it back together to see how it works.
 
 That said, I've made a few improvements:
 
-* Code is broken out into modules, making improvements to the code easier.
+* Code is broken out into modules, making everything easier to improve
 * All functions are explicitly typed, reducing mystery-meat type inference errors.
 * Keyboard bindings are cleaned up. Keys move when pressed and stop when lifted. Different keys
 are used for up and down directions.
@@ -18,6 +18,8 @@ And a few improvements have yet to be made:
 * Scores should be displayed.
 * Ball should speed up after a few hits
 * Maybe a little color, some sounds...
+* The speed of the game needs to become independent of the speed of the computer. Ideally,
+we should cap the frame rate using GLUT's timer callback and elapsedTime
 
 
 ##To play:
