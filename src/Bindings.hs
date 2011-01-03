@@ -52,6 +52,17 @@ keyboard game (Char 'l') Up _ _ = do
     let (x,y,_) = rightP g
     game $= g{rightP=(x,y,0)}
 
+keyboard game (Char '\32') Down _ _ = do
+    g <- get game
+    let Ball (x,y) xD yD = ball g
+    let xDir
+         | x <= _LEFT+3*paddleWidth = _INITIAL_BALL_DIR
+         | x >= _RIGHT-3*paddleWidth = -_INITIAL_BALL_DIR
+         | otherwise = xD
+    if (xD == 0)
+        then game $= g{ball = Ball (x+4*xDir,y) xDir _INITIAL_BALL_DIR}
+        else return ()
+
 keyboard game (Char '\27') Down _ _ = do
     flush
     exit

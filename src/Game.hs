@@ -71,11 +71,25 @@ moveBall g
         factor = moveFactor g
         (Ball (x,y) xDir yDir) = ball g
         newXDir
-            | x <= _LEFT - (ballRadius/4) = -xDir
-            | x >= _RIGHT + (ballRadius/4) = -xDir
+            -- reverse direction if ball hits the left paddle
+            |    x - ballRadius <= xl + paddleWidth
+              && y + ballRadius >= yl
+              && y              <= yl + paddleHeight
+              = -xDir
+            -- reverse direction if ball hits the right paddle
+            |    x + ballRadius >= xr
+              && y + ballRadius >= yr
+              && y              <= yr + paddleHeight
+              = -xDir
+            -- stop the ball if it falls off the screen
+            | x <= _LEFT - ballRadius = 0
+            | x >= _RIGHT + ballRadius = 0
             | otherwise = xDir
         newYDir
+            -- bounce off the top and bottom walls
             | y <= _BOTTOM - (ballRadius/4) || y >= _TOP + (ballRadius/4) = -yDir
+            -- if x becomes 0, then stop movement along y as well.
+            | newXDir == 0 = 0
             | otherwise = yDir
 
 movePaddle :: Paddle -> GLfloat -> Paddle
