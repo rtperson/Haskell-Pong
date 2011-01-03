@@ -9,12 +9,12 @@ maintainer: Roger Turnau
 build-depends: GLUT ==2.2.2.0, OpenGL ==2.4.0.1,
                StateVar >=1.0.0.0, base -any
 stability: Experimental
-homepage:
+homepage: https://github.com/rtperson/Haskell-Pong
 package-url:
 bug-reports:
 synopsis: A new Pong game
 description: ... because who doesn't want another FP retrogame?
-category:
+category: Games
 author: Roger Turnau
 tested-with:
 data-files:
