@@ -12,8 +12,6 @@ are used for up and down directions.
 
 And a few improvements have yet to be made:
 
-* The paddles don't yet have collision logic, although it will be easy to layer that into the code
-* Once the paddles work, I will remove the horizontal bounce
 * Need to draw a dashed line down the middle
 * Scores should be displayed.
 * Ball should speed up after a few hits
