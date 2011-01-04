@@ -3,7 +3,7 @@ version: 0.0.1
 cabal-version: -any
 build-type: Simple
 license: AllRightsReserved
-license-file: /home/roger/projects/haskell/leksah/OpenGLGraphics/LICENSE
+license-file: LICENSE
 copyright:
 maintainer: Roger Turnau
 build-depends: GLUT ==2.2.2.0, OpenGL ==2.4.0.1,

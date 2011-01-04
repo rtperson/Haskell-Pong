@@ -8,7 +8,7 @@
 -- Stability   :  Experimental
 -- Portability :
 --
--- | Game logic goes here (paddle location, ball movement, etc.)
+-- | Keyboard bindings and all other game controls go here.
 --
 -----------------------------------------------------------------------------
 module Bindings where
@@ -18,6 +18,7 @@ import Graphics.Rendering.OpenGL
 import Graphics.UI.GLUT
 import Data.IORef
 
+-- TODO: get rid of duplicated code. Generalize out KeyState and paddle
 keyboard :: IORef Game -> Key -> KeyState -> Modifiers -> Position -> IO ()
 keyboard game (Char 'q') Down _ _ = do
     g <- get game
