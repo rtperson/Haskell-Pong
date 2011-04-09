@@ -26,7 +26,6 @@ The keys 'Q' and 'A' move the left paddle. <br>
 The keys 'O' and 'L' move the right paddle. <br>
 Space key serves the ball. <br>
 Escape key exits the game. <br>
-The idea is to keep the ball in play. <br>
 
 ##Some ideas for the future:
 

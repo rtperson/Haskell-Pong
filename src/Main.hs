@@ -35,8 +35,11 @@ main = do
     --windowSize $= Size _INITIAL_WIDTH _INITIAL_HEIGHT
     fullScreen
     displayCallback $= display game
-    idleCallback $= Just (idle game)
+    --idleCallback $= Just (idle game)
+
+
     keyboardMouseCallback $= Just (keyboard game)
     reshapeCallback $= Just (reshape game)
+    addTimerCallback frameRate $ timer game
     mainLoop
 

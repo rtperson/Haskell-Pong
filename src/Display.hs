@@ -51,6 +51,23 @@ idle game = do
 
     postRedisplay Nothing
 
+timer :: IORef Game -> IO ()
+timer game = do
+    addTimerCallback frameRate $ timer game
+    g <- get game
+    let fac = (moveFactor g)
+    game
+        $= g{ ball = moveBall g
+            , leftP = movePaddle (leftP g) fac
+            , rightP = movePaddle (rightP g) fac
+            }
+
+    postRedisplay Nothing
+
+
+frameRate :: Timeout
+frameRate = 1000 `div` 60
+
 reshape game s@(Size w h) = do
     viewport $= (Position 0 0, s)
     matrixMode $= Projection

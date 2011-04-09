@@ -59,7 +59,7 @@ initGame =
          , leftP = (_LEFT+paddleWidth, 0, 0)
          , rightP = (_RIGHT-2*paddleWidth, 0, 0)
          , points = (0,0)
-         , moveFactor = 0.25
+         , moveFactor = 5
          }
 
 moveBall :: Game -> Ball

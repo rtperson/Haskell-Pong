@@ -17,41 +17,20 @@ import Game
 import Graphics.Rendering.OpenGL
 import Graphics.UI.GLUT
 import Data.IORef
+import Data.Maybe
 
--- TODO: get rid of duplicated code. Generalize out KeyState and paddle
+data PaddleSide = LeftPaddle | RightPaddle deriving Eq
+
 keyboard :: IORef Game -> Key -> KeyState -> Modifiers -> Position -> IO ()
-keyboard game (Char 'q') Down _ _ = do
-    g <- get game
-    let (x,y,_) = leftP g
-    game $= g{leftP=(x,y,paddleDir Up)}
-keyboard game (Char 'q') Up _ _ = do
-    g <- get game
-    let (x,y,_) = leftP g
-    game $= g{leftP=(x,y,0)}
-keyboard game (Char 'a') Down _ _ = do
-    g <- get game
-    let (x,y,_) = leftP g
-    game $= g{leftP=(x,y,paddleDir Down)}
-keyboard game (Char 'a') Up _ _ = do
-    g <- get game
-    let (x,y,_) = leftP g
-    game $= g{leftP=(x,y,0)}
-keyboard game (Char 'o') Down _ _ = do
-    g <- get game
-    let (x,y,_) = rightP g
-    game $= g{rightP=(x,y,paddleDir Up)}
-keyboard game (Char 'o') Up _ _ = do
-    g <- get game
-    let (x,y,_) = rightP g
-    game $= g{rightP=(x,y,0)}
-keyboard game (Char 'l') Down _ _ = do
-    g <- get game
-    let (x,y,_) = rightP g
-    game $= g{rightP=(x,y,paddleDir Down)}
-keyboard game (Char 'l') Up _ _ = do
-    g <- get game
-    let (x,y,_) = rightP g
-    game $= g{rightP=(x,y,0)}
+keyboard game key keystate _ _ 
+    | key == (Char 'q') && keystate == Down = keyHandler (Just (paddleDir Up)) LeftPaddle game
+    | key == (Char 'q') && keystate == Up   = keyHandler Nothing LeftPaddle game
+    | key == (Char 'a') && keystate == Down = keyHandler (Just (paddleDir Down)) LeftPaddle game
+    | key == (Char 'a') && keystate == Up   = keyHandler Nothing LeftPaddle game
+    | key == (Char 'o') && keystate == Down = keyHandler (Just (paddleDir Up)) RightPaddle game
+    | key == (Char 'o') && keystate == Up   = keyHandler Nothing RightPaddle game
+    | key == (Char 'l') && keystate == Down = keyHandler (Just (paddleDir Down)) RightPaddle game
+    | key == (Char 'l') && keystate == Up   = keyHandler Nothing RightPaddle game   
 
 keyboard game (Char '\32') Down _ _ = do
     g <- get game
@@ -69,6 +48,25 @@ keyboard game (Char '\27') Down _ _ = do
     exit
 
 keyboard _ _ _ _ _ = return ()
+
+keyHandler :: Maybe GLfloat -> PaddleSide -> IORef Game-> IO ()
+keyHandler func paddle game
+    | isJust func && paddle == LeftPaddle  = do
+        g <- get game
+        let (x,y,_) = leftP g
+        game $= g{leftP=(x,y,fromJust func)}
+    | isJust func && paddle == RightPaddle = do 
+        g <- get game
+        let (x,y,_) = rightP g
+        game $= g{rightP=(x,y,fromJust func)}
+    | func == Nothing && paddle == LeftPaddle = do
+        g <- get game
+        let (x,y,_) = leftP g
+        game $= g{leftP=(x,y,0)}
+    | otherwise = do
+        g <- get game
+        let (x,y,_) = rightP g
+        game $= g{rightP=(x,y,0)}
 
 paddleDir :: KeyState -> GLfloat
 paddleDir Up   = _INITIAL_PADDLE_DIR

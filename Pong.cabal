@@ -7,7 +7,7 @@ license-file: LICENSE
 copyright:
 maintainer: Roger Turnau
 build-depends: GLUT ==2.2.2.0, OpenGL ==2.4.0.1,
-               StateVar >=1.0.0.0, base -any
+               StateVar >=1.0.0.0, base >= 4.0
 stability: Experimental
 homepage: https://github.com/rtperson/Haskell-Pong
 package-url:
