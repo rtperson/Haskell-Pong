@@ -19,9 +19,7 @@ import Display
 import Game
 import Bindings
 import Graphics.UI.GLUT as GLUT
-import Graphics.Rendering.OpenGL
 import Data.IORef
-import Data.StateVar
 
 myInit :: IO ()
 myInit = undefined

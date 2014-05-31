@@ -14,9 +14,8 @@
 -----------------------------------------------------------------------------
 module Display where
 
-import Graphics.UI.GLUT
-import Graphics.Rendering.OpenGL
-import Data.StateVar
+import Graphics.UI.GLUT  (swapBuffers, postRedisplay, addTimerCallback, Timeout)
+import Graphics.Rendering.OpenGL 
 import Data.IORef
 import Game
 import Shapes
