@@ -33,7 +33,7 @@ square width = rectangle width width
 circlePoints :: GLfloat -> GLfloat -> [(GLfloat, GLfloat, GLfloat)]
 circlePoints radius number
     = [let alpha = (2*pi) * i / number
-       in (radius * (sin (alpha)), radius * (cos (alpha)), 0)
+       in (radius * sin alpha, radius * cos alpha, 0)
       | i <- [1,2..number]]
 
 circle :: GLfloat -> [(GLfloat, GLfloat, GLfloat)]
